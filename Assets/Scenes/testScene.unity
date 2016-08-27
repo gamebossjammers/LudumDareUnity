@@ -18353,10 +18353,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1873694098}
-  m_LocalRotation: {x: 0.5233427, y: -0.47551283, z: 0.52334267, w: 0.47551274}
+  m_LocalRotation: {x: 0.52334327, y: -0.4755123, z: 0.5233422, w: 0.47551334}
   m_LocalPosition: {x: -7.9956036, y: 24.835682, z: 0}
   m_LocalScale: {x: 0.11763447, y: 1.8075624, z: 1.6573209}
-  m_LocalEulerAnglesHint: {x: 84.517, y: -269.99988, z: -179.9999}
+  m_LocalEulerAnglesHint: {x: 84.517, y: -269.99988, z: -180}
   m_Children: []
   m_Father: {fileID: 2080526685}
   m_RootOrder: 0
@@ -19548,6 +19548,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2080526685}
+  - 114: {fileID: 2080526686}
   m_Layer: 0
   m_Name: cameraAim
   m_TagString: Untagged
@@ -19561,14 +19562,25 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2080526684}
-  m_LocalRotation: {x: -0.09298508, y: 0.09298498, z: -0.7009664, w: 0.7009663}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071067}
   m_LocalPosition: {x: 0, y: 2.46, z: 0}
   m_LocalScale: {x: 0.552804, y: 0.6038927, z: 8.500911}
-  m_LocalEulerAnglesHint: {x: 0, y: 15.112599, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_Children:
   - {fileID: 1873694103}
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!114 &2080526686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2080526684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cae3781c7e4dbe4c9e9995c8ba567c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2082723128
 GameObject:
   m_ObjectHideFlags: 0
