@@ -4,10 +4,14 @@ using System.Collections.Generic;
 
 public class CameraController : MonoBehaviour {
 
+	public Transform catapult;
+	public Transform ball;
+
 	private enum cameraStates
 	{
 		onPosition,
-		topView
+		topView,
+		flyingBall
 	}
 
 	private cameraStates currentState;
@@ -29,7 +33,7 @@ public class CameraController : MonoBehaviour {
 	void Update () 
 	{
 
-		if (Input.GetKeyDown (KeyCode.R))
+		if (Input.GetKeyDown (KeyCode.R) && currentState != cameraStates.flyingBall)
 		{
 			if (this.currentState == cameraStates.onPosition)
 			{
@@ -69,6 +73,10 @@ public class CameraController : MonoBehaviour {
 		case cameraStates.onPosition:
 			this.rotateAround();
 			break;
+		case cameraStates.flyingBall:
+			this.transform.localPosition = this.ball.transform.localPosition;
+			this.rotateAround();
+			break;
 		case cameraStates.topView:
 			this.viewTop();
 			break;
@@ -83,8 +91,6 @@ public class CameraController : MonoBehaviour {
 
 		float horizontalPosition = this.transform.eulerAngles.y + (InputManager.rightJoy.x * CATAPULT_ROTATION);
 		float verticalPosition = this.transform.eulerAngles.z + (InputManager.rightJoy.y * CATAPULT_ROTATION);
-
-
 
 		this.transform.eulerAngles = new Vector3( 0, horizontalPosition , verticalPosition );
 
@@ -106,7 +112,17 @@ public class CameraController : MonoBehaviour {
 
 	public void viewTop()
 	{
-		//TODO
-		// cuando el input controller este terminado
+
+		float horizontalMovement = InputManager.rightJoy.x * 10 * Time.deltaTime;
+		float verticalMovement = InputManager.rightJoy.y * 10 * Time.deltaTime;
+
+
+		Camera.main.transform.Translate(horizontalMovement,verticalMovement,0);
+	
+	}
+
+	public void followBall()
+	{
+		this.currentState = cameraStates.flyingBall;
 	}
 }

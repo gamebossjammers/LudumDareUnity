@@ -14,6 +14,7 @@ public class TestController : MonoBehaviour {
 	public Transform catapultBase;
 	public Transform centerPalo;
 	public RectTransform strengthMeter;
+	public Transform cameraAim;
 
 	public Vector3 cameraOffset;
 
@@ -133,8 +134,6 @@ public class TestController : MonoBehaviour {
 
 			this.bolaDeJuego.GetComponent<Rigidbody> ().AddRelativeForce (Vector3.up * strenght, ForceMode.Impulse);
 
-			this.cleanCamera ();
-
 			this.currentState = GameState.launched;
 
 		}
@@ -167,7 +166,7 @@ public class TestController : MonoBehaviour {
 
 				this.bolaDeJuego.GetComponent<Rigidbody> ().AddRelativeForce (Vector3.up * strenght, ForceMode.Impulse);
 
-				this.cleanCamera ();
+				cameraAim.GetComponent<CameraController> ().followBall ();
 
 				this.currentState = GameState.launched;
 			}
@@ -176,24 +175,8 @@ public class TestController : MonoBehaviour {
 
 	}
 
-	private void cleanCamera()
-	{
-
-		Camera.main.transform.localEulerAngles = new Vector3 (55, -90, 0);
-		Camera.main.transform.localPosition = new Vector3 (10, 24, 0);
-
-		this.cameraOffset = Camera.main.transform.position - this.bolaDeJuego.transform.position;
-
-
-		Camera.main.transform.parent = null;
-
-	}
 
 	private void doNothing()
 	{
-
-		Camera.main.transform.position = this.bolaDeJuego.transform.position + cameraOffset;
-
-
 	}
 }
