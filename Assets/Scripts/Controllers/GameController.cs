@@ -36,7 +36,7 @@ public class GameController : MonoBehaviour {
 	private readonly float CATAPULT_VERTICAL_ROTATION_SPEED = 25f;
 	private readonly float STRENGTH_BUILD_SPEED = 170f;
 
-	private readonly Vector3 BALL_LAUNCH_STOP_POSITION = new Vector3 (0, 0, -35f);
+	private readonly Vector3 BALL_LAUNCH_STOP_POSITION = new Vector3 (-3, 0, 0);
 
 	// Use this for initialization
 	void Start () 
@@ -82,30 +82,31 @@ public class GameController : MonoBehaviour {
 		float horizontalRotation = this.transform.eulerAngles.y + (InputManager.leftJoy.x * CATAPULT_HORIZONTAL_ROTATION_SPEED * Time.deltaTime);
 		float verticalRotation = this.transform.eulerAngles.z + (InputManager.leftJoy.y * CATAPULT_VERTICAL_ROTATION_SPEED * Time.deltaTime);
 
-		this.catapult.transform.Rotate (0, -horizontalRotation, 0);
-		this.catapultArm.transform.Rotate (0, 0, verticalRotation);
+		this.catapult.transform.Rotate (0 , 0 , -horizontalRotation);
+		this.catapultArm.transform.Rotate (verticalRotation, 0, 0);
 
 		// limites de catapulta
-		if (this.catapultArm.transform.localEulerAngles.z <= 5f)
+		if (this.catapultArm.transform.localEulerAngles.x <= 5f)
 		{
-			this.catapultArm.transform.Rotate (0, 0, -verticalRotation);
+			this.catapultArm.transform.Rotate (-verticalRotation, 0, 0);
 		}
-		if (this.catapultArm.transform.localEulerAngles.z >= 90f)
+		if (this.catapultArm.transform.localEulerAngles.x >= 90f)
 		{
-			this.catapultArm.transform.Rotate (0, 0, -verticalRotation);
+			this.catapultArm.transform.Rotate (verticalRotation, 0, 0);
 		}
 
 		previousState = GameState.rotateCatapult;
 
 		if (InputManager.launchButton)
 		{
+			
 			this.currentState = GameState.buildStrength;
 
 			this.strengthMeter.GetComponent<RectTransform>().sizeDelta = new Vector2 (0, 0);
 
 			this.strength = Random.Range (5, 67);
 			this.strengthUP = (Random.Range (0, 2) == 1) ? true : false;
-			this.armRotation = this.catapultArm.transform.localEulerAngles.z;
+			this.armRotation = this.catapultArm.transform.localEulerAngles.x;
 
 		}
 	}
@@ -146,7 +147,7 @@ public class GameController : MonoBehaviour {
 			this.catapultArm.transform.DOLocalRotate ( this.BALL_LAUNCH_STOP_POSITION , 2).OnComplete ( () =>
 			{
 
-				this.catapultArm.transform.DOLocalRotate ( new Vector3 ( 0 , 0 , this.armRotation ) , ( 2 / this.strength ) ).OnComplete ( () =>
+				this.catapultArm.transform.DOLocalRotate ( new Vector3 ( this.armRotation , 0 , 0 ) , ( 2 / this.strength ) ).OnComplete ( () =>
 				{
 					this.addEnergy();
 					this.currentState = GameState.ballLaunched;
@@ -188,8 +189,6 @@ public class GameController : MonoBehaviour {
 		this.gameBall.GetComponent<Rigidbody> ().useGravity = true;
 
 		this.gameBall.transform.SetParent (null);
-
-		this.gameBall.transform.localScale = Vector3.one;
 
 		this.gameBall.GetComponent<Rigidbody> ().AddRelativeForce (Vector3.up * strength, ForceMode.Impulse);
 
