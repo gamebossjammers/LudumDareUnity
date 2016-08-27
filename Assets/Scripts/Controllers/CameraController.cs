@@ -9,6 +9,8 @@ public class CameraController : MonoBehaviour {
 	public Transform mainCamera;
 	public Transform ball;
 
+	private Transform cameraAimObject;
+
 	private readonly float TOP_VIEW_SPEED = 20;
 	private readonly float CAMERA_ROTATION_SPEED = 50;
 
@@ -29,50 +31,49 @@ public class CameraController : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+		this.cameraAimObject = this.cataCrux.transform;
 
-		this.transform.position = this.cataCrux.transform.position;
+		this.transform.localPosition = this.cameraAimObject.transform.position;
 
 		currentState = cameraStates.onPosition;
 		this.zoomPosition = 0;
 		zoomDistances.Add (24);
 		zoomDistances.Add (32);
 		zoomDistances.Add (40);
+
+
 	}
 
 	// Update is called once per frame
 	void Update () 
 	{
 
-		if (Input.GetKeyDown (KeyCode.R) && currentState != cameraStates.flyingBall)
+		InputManager.checkInputs ();
+
+		this.transform.localPosition = this.cameraAimObject.position;
+
+		if ( InputManager.cameraTypeChange )
 		{
 			if (this.currentState == cameraStates.onPosition)
 			{
-				this.currentState = cameraStates.topView;
-			
-				this.transform.localPosition = new Vector3 (0, 2.46f, 0);
 				this.transform.localEulerAngles = new Vector3 (0, 0, 0);
 
 				Camera.main.transform.localPosition = new Vector3 (-8, 150, 0);
 				Camera.main.transform.localEulerAngles = new Vector3 (90, 270, 0);
-				//Camera.main.orthographic = true;
+
 			} 
-			else if ( this.currentState == cameraStates.topView )
+			else if (this.currentState == cameraStates.topView)
 			{
-				this.transform.localPosition = new Vector3 (0, 2.46f, 0);
 				this.transform.localEulerAngles = new Vector3 (0, 0, -90);
 
 				Camera.main.transform.localPosition = new Vector3 (-8, 24, 0);
 				Camera.main.transform.localEulerAngles = new Vector3 (90, -270, -180);
-
-				this.currentState = cameraStates.onPosition;
-
 			}
-				
+
+			this.currentState = (this.currentState == cameraStates.onPosition) ? cameraStates.topView : cameraStates.onPosition;
+
+
 		}
-
-		//Debug.Log (currentState);
-
-		InputManager.checkInputs ();
 
 	}
 
@@ -127,26 +128,7 @@ public class CameraController : MonoBehaviour {
 
 	public void followBall()
 	{
-		this.currentState = cameraStates.flyingBall;
+		this.cameraAimObject = this.ball;
 	}
-
-	/*
-	public void trembleScreen( float trembleTime_ )
-	{
-
-		Vector3 initialPosition = Camera.main.transform.localPosition;
-		Vector3 initialRotation = Camera.main.transform.localEulerAngles;
-
-		Camera.main.transform.DOLocalMove ( ( initialPosition + (Vector3.one * 0.3f) ), (trembleTime_ * 0.5f) ).OnComplete ( () =>
-		{	
-			Camera.main.transform.DOLocalRotate (initialRotation + (Vector3.one * 0.3f), (trembleTime_ * 0.5f)).OnComplete (() =>
-			{
-				Camera.main.transform.localPosition = initialPosition;
-				Camera.main.transform.localEulerAngles = initialRotation;
-			});
-		});
-
-
-	}
-	*/
+		
 }
