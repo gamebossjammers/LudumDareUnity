@@ -58,11 +58,13 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(_loopDelay);
         if (_bMasterTowerDestroyed)
         {
+            GameInstance.GetCurrentWindowManager().Open(2);
             _gameState = EGameState.Win;
             Debug.Log("You Won!");
         }
         else
         {
+            GameInstance.GetCurrentWindowManager().Open(3);
             _gameState = EGameState.Lose;
             Debug.Log("You Died!");
         }
@@ -78,11 +80,13 @@ public class GameManager : MonoBehaviour
     private IEnumerator GameReady ()
     {
         Debug.Log("Ready!");
+        GameInstance.GetCurrentWindowManager().Open(0);
         yield return new WaitForSeconds(_loopDelay);
     }
 
     private IEnumerator GamePlaying ()
     {
+        GameInstance.GetCurrentWindowManager().Open(1);
         while (!(_movesLeft <= 0 || _bMasterTowerDestroyed))
         {
             Debug.Log("Tick!");
