@@ -58,16 +58,21 @@ public class CameraController : MonoBehaviour {
 
 		//Debug.Log (currentState);
 
+		InputManager.checkInputs ();
+
+	}
+
+	public void LateUpdate()
+	{
 		switch (currentState)
 		{
-			case cameraStates.onPosition:
+		case cameraStates.onPosition:
 			this.rotateAround();
 			break;
-			case cameraStates.topView:
+		case cameraStates.topView:
 			this.viewTop();
 			break;
 		}
-			
 
 	}
 
@@ -76,27 +81,10 @@ public class CameraController : MonoBehaviour {
 		
 		float CATAPULT_ROTATION = 50 * Time.deltaTime;
 
-		float horizontalPosition = this.transform.eulerAngles.y;
-		float verticalPosition = this.transform.eulerAngles.z;
-
-		if (Input.GetKey (KeyCode.RightArrow))
-		{
-			horizontalPosition += (CATAPULT_ROTATION);
-		} 
-		else if (Input.GetKey (KeyCode.LeftArrow))
-		{
-			horizontalPosition -= (CATAPULT_ROTATION);
-		}
+		float horizontalPosition = this.transform.eulerAngles.y + (InputManager.rightJoy.x * CATAPULT_ROTATION);
+		float verticalPosition = this.transform.eulerAngles.z + (InputManager.rightJoy.y * CATAPULT_ROTATION);
 
 
-		if (Input.GetKey (KeyCode.UpArrow))
-		{
-			verticalPosition += (CATAPULT_ROTATION);
-		} 
-		else if (Input.GetKey (KeyCode.DownArrow))
-		{
-			verticalPosition -= (CATAPULT_ROTATION);
-		}
 
 		this.transform.eulerAngles = new Vector3( 0, horizontalPosition , verticalPosition );
 
@@ -118,6 +106,7 @@ public class CameraController : MonoBehaviour {
 
 	public void viewTop()
 	{
-
+		//TODO
+		// cuando el input controller este terminado
 	}
 }
