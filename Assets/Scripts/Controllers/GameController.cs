@@ -25,7 +25,8 @@ public class GameController : MonoBehaviour {
 		buildStrength,
 		launchBall,
 		preparingCatapult,
-		ballLaunched
+		ballLaunched,
+		ballStopped
 
 	};
 	private GameState currentState = GameState.rotateCatapult;
@@ -64,6 +65,12 @@ public class GameController : MonoBehaviour {
 			break;
 		case GameState.launchBall:
 			this.launchBall ();
+			break;
+		case GameState.ballLaunched:
+			this.checkIfBallStopped ();
+			break;
+		case GameState.ballStopped:
+			this.restartBall ();
 			break;
 		}
 
@@ -148,6 +155,32 @@ public class GameController : MonoBehaviour {
 			});
 		});
 
+	}
+
+	private void checkIfBallStopped()
+	{
+		if (this.gameBall.GetComponent<Rigidbody> ().velocity.magnitude <= 3)
+		{
+
+			Debug.Log ("ballStopped");
+
+			NavMeshHit navHit;
+
+			if (NavMesh.SamplePosition(this.gameBall.transform.position, out navHit, 1, -1))
+			{
+				this.catapult.transform.position = navHit.position;
+				this.mainCamera.transform.position = this.catapult.transform.position;
+
+				this.currentState = GameState.ballStopped;
+
+			}
+				
+		}
+	}
+
+	private void restartBall()
+	{
+		this.currentState = GameState.rotateCatapult;
 	}
 
 	private void addEnergy()
