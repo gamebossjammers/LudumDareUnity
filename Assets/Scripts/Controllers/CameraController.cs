@@ -31,7 +31,29 @@ public class CameraController : MonoBehaviour {
 
 		if (Input.GetKeyDown (KeyCode.R))
 		{
-			this.currentState = (this.currentState == cameraStates.onPosition) ? cameraStates.topView : cameraStates.onPosition; 
+			if (this.currentState == cameraStates.onPosition)
+			{
+				this.currentState = cameraStates.topView;
+			
+				this.transform.localPosition = new Vector3 (0, 2.46f, 0);
+				this.transform.localEulerAngles = new Vector3 (0, 0, 0);
+
+				Camera.main.transform.localPosition = new Vector3 (-8, 150, 0);
+				Camera.main.transform.localEulerAngles = new Vector3 (90, 270, 0);
+				//Camera.main.orthographic = true;
+			} 
+			else if ( this.currentState == cameraStates.topView )
+			{
+				this.transform.localPosition = new Vector3 (0, 2.46f, 0);
+				this.transform.localEulerAngles = new Vector3 (0, 0, -90);
+
+				Camera.main.transform.localPosition = new Vector3 (-8, 24, 0);
+				Camera.main.transform.localEulerAngles = new Vector3 (90, -270, -180);
+
+				this.currentState = cameraStates.onPosition;
+
+			}
+				
 		}
 
 		//Debug.Log (currentState);
