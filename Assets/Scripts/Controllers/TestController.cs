@@ -6,7 +6,9 @@ public class TestController : MonoBehaviour {
 
 	private float strenght = 0;
 	private bool strenghtUP = true;
-	public int stopPoint;
+
+	private float paloCentralRotation;
+	private bool paloCentralUP = false;
 
 	public Transform bolaDeJuego;
 	public Transform catapultBase;
@@ -59,21 +61,32 @@ public class TestController : MonoBehaviour {
 	{
 		const float CATAPULT_ROTATION = 25;
 
-		if (Input.GetKey (KeyCode.A))
+		if (Input.GetKey (KeyCode.D))
 		{
 			catapultBase.Rotate (new Vector3 (0, CATAPULT_ROTATION, 0) * Time.deltaTime);
 
 		} 
-		else if (Input.GetKey (KeyCode.D))
+		else if (Input.GetKey (KeyCode.A))
 		{
 			catapultBase.Rotate (new Vector3 (0, -CATAPULT_ROTATION, 0) * Time.deltaTime);
-		} 
-		else if (Input.GetKeyDown (KeyCode.Space))
+		}
+
+		if(Input.GetKey (KeyCode.W))
+		{
+			this.centerPalo.Rotate (new Vector3 (0, 0, CATAPULT_ROTATION) * Time.deltaTime);
+		}
+		else if (Input.GetKey (KeyCode.S))
+		{
+			this.centerPalo.Rotate (new Vector3 (0, 0, -CATAPULT_ROTATION) * Time.deltaTime);
+		}
+
+		if (Input.GetKeyDown (KeyCode.Space))
 		{
 			this.currentState = GameState.buildStrength;
 			this.strengthMeter.sizeDelta = new Vector2 (100, 0);
 			this.strenght = Random.Range (5, 67);
 			this.strenghtUP = (Random.Range (0, 2) == 1) ? true : false;
+			this.paloCentralRotation = this.centerPalo.localEulerAngles.z;
 		}
 
 
@@ -96,18 +109,16 @@ public class TestController : MonoBehaviour {
 			this.strenght = 0;
 			this.strenghtUP = true;
 		}
-
-
+			
 		if (Input.GetKeyDown (KeyCode.Space))
 		{
-
+			this.strenght = this.strenght * 0.5f;
 			this.currentState = GameState.checkRotation;
-
 		}
 
 	}
 
-	private void checkRotation()
+	private void checkRotationOLD()
 	{
 
 		this.centerPalo.Rotate (new Vector3 (0, 0, 135) * Time.deltaTime);
@@ -127,6 +138,41 @@ public class TestController : MonoBehaviour {
 			this.currentState = GameState.launched;
 
 		}
+
+	}
+
+	private void checkRotation()
+	{
+		
+		if (!this.paloCentralUP)
+		{
+			this.centerPalo.localEulerAngles = new Vector3 (0, 0, this.centerPalo.localEulerAngles.z - (75 * Time.deltaTime));
+
+			if (this.centerPalo.localEulerAngles.z >= 350)
+			{
+				this.paloCentralUP = true;
+			}
+		} 
+		else
+		{
+			this.centerPalo.localEulerAngles = new Vector3 (0, 0, this.centerPalo.localEulerAngles.z + (150 * Time.deltaTime));
+
+			if (this.centerPalo.localEulerAngles.z >= this.paloCentralRotation)
+			{
+				this.bolaDeJuego.GetComponent<Rigidbody> ().useGravity = true;
+
+				this.bolaDeJuego.SetParent (null);
+
+				this.bolaDeJuego.localScale = Vector3.one;
+
+				this.bolaDeJuego.GetComponent<Rigidbody> ().AddRelativeForce (Vector3.up * strenght, ForceMode.Impulse);
+
+				this.cleanCamera ();
+
+				this.currentState = GameState.launched;
+			}
+		}
+
 
 	}
 
