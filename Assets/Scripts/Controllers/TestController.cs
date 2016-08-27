@@ -5,17 +5,15 @@ using UnityEngine.UI; // Interfaz de usuario :)
 public class TestController : MonoBehaviour {
 
 	private float strenght = 0;
+	private bool strenghtUP = true;
 	public int stopPoint;
 
 	public Transform bolaDeJuego;
 	public Transform catapultBase;
 	public Transform centerPalo;
-	public Text strengthText;
+	public RectTransform strengthMeter;
 
 	public Vector3 cameraOffset;
-
-	private float timerStrength = 0;
-	public float topTime = 10;
 
 	private enum GameState
 	{
@@ -30,10 +28,8 @@ public class TestController : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		Physics.gravity = new Vector3 (0, -19, 0);
-
-		this.timerStrength = 0;
-
+		Physics.gravity = new Vector3 (0, -27, 0);
+	
 		this.bolaDeJuego.GetComponent<Rigidbody> ().useGravity = false;
 	}
 	
@@ -75,34 +71,36 @@ public class TestController : MonoBehaviour {
 		else if (Input.GetKeyDown (KeyCode.Space))
 		{
 			this.currentState = GameState.buildStrength;
+			this.strengthMeter.sizeDelta = new Vector2 (100, 0);
+			this.strenght = Random.Range (5, 67);
+			this.strenghtUP = (Random.Range (0, 2) == 1) ? true : false;
 		}
 
 
 	}
 
 	private void buildStrength()
-	{
-		this.timerStrength += Time.deltaTime;
+	{ 
 
-		if (this.timerStrength <= this.topTime)
+		this.strengthMeter.sizeDelta = new Vector2 (100, strenght);
+
+		this.strenght = (this.strenghtUP == true) ? this.strenght += (120 * Time.deltaTime) : this.strenght -= (120 * Time.deltaTime);
+
+		if (this.strenght >= 100)
 		{
-			if (Input.GetKeyDown (KeyCode.Space))
-			{
-				this.strenght += 2f;
-			} 
-
-			this.strenght -= 0.1f;
-
-			if (this.strenght <= 0f)
-			{
-				this.strenght = 0;
-			}
-
-			this.strengthText.text = this.strenght.ToString ();
+			this.strenght = 100;
+			this.strenghtUP = false;
 		} 
-		else
+		else if (this.strenght <= 0)
 		{
-			
+			this.strenght = 0;
+			this.strenghtUP = true;
+		}
+
+
+		if (Input.GetKeyDown (KeyCode.Space))
+		{
+
 			this.currentState = GameState.checkRotation;
 
 		}
@@ -112,9 +110,9 @@ public class TestController : MonoBehaviour {
 	private void checkRotation()
 	{
 
-		this.centerPalo.Rotate (new Vector3 (0, 0, 20) * Time.deltaTime);
+		this.centerPalo.Rotate (new Vector3 (0, 0, 135) * Time.deltaTime);
 
-		if (Input.GetKeyDown (KeyCode.S))
+		if ( Input.GetKeyDown (KeyCode.Space) || this.centerPalo.localEulerAngles.z >= 55)
 		{
 			this.bolaDeJuego.GetComponent<Rigidbody> ().useGravity = true;
 
