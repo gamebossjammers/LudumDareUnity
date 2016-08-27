@@ -17,6 +17,8 @@ public class GameController : MonoBehaviour {
 	public GameObject catapultArm;
 	public GameObject mainCamera;
 
+	public float navMeshcheckRange = 20f;
+
 	// Estados de juego
 	private enum GameState
 	{
@@ -37,6 +39,9 @@ public class GameController : MonoBehaviour {
 	private readonly float STRENGTH_BUILD_SPEED = 170f;
 
 	private readonly Vector3 BALL_LAUNCH_STOP_POSITION = new Vector3 (-3, 0, 0);
+	private readonly Vector3 BALL_CATAPULT_POSITION = new Vector3 (0, -0.056188f, 0.005135f);
+	private readonly Vector3 BALL_CATAPULT_ROTATION = new Vector3 (90, 0, 0);
+	private readonly Vector3 CATAPULT_ARM_ROTATION = new Vector3 (-45, 0, 0);
 
 	// Use this for initialization
 	void Start () 
@@ -46,7 +51,8 @@ public class GameController : MonoBehaviour {
 		Physics.gravity = new Vector3 (0, -27, 0);
 
 		// iniciamos la bola
-		this.gameBall.GetComponent<Rigidbody> ().useGravity = false;
+		this.restartBall(); 
+
 
 	}
 	
@@ -70,7 +76,7 @@ public class GameController : MonoBehaviour {
 			this.checkIfBallStopped ();
 			break;
 		case GameState.ballStopped:
-			this.restartBall ();
+			this.restartGame ();
 			break;
 		}
 
@@ -162,12 +168,10 @@ public class GameController : MonoBehaviour {
 	{
 		if (this.gameBall.GetComponent<Rigidbody> ().velocity.magnitude <= 3)
 		{
-
-			Debug.Log ("ballStopped");
-
+			
 			NavMeshHit navHit;
 
-			if (NavMesh.SamplePosition(this.gameBall.transform.position, out navHit, 1, -1))
+			if (NavMesh.SamplePosition(this.gameBall.transform.position, out navHit, this.navMeshcheckRange , -1))
 			{
 				this.catapult.transform.position = navHit.position;
 				this.mainCamera.transform.position = this.catapult.transform.position;
@@ -179,8 +183,10 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-	private void restartBall()
+	private void restartGame()
 	{
+		this.restartBall ();
+
 		this.currentState = GameState.rotateCatapult;
 	}
 
@@ -192,6 +198,24 @@ public class GameController : MonoBehaviour {
 
 		this.gameBall.GetComponent<Rigidbody> ().AddRelativeForce (Vector3.up * strength, ForceMode.Impulse);
 
+		this.gameBall.GetComponent<Rigidbody>().freezeRotation = false;
+
 	}
 
+	private void restartBall()
+	{
+
+		this.catapultArm.transform.localEulerAngles = this.CATAPULT_ARM_ROTATION;
+
+		this.gameBall.transform.SetParent (this.catapultArm.transform);
+
+
+		this.gameBall.GetComponent<Rigidbody> ().useGravity = false;
+		this.gameBall.GetComponent<Rigidbody> ().velocity = new Vector3 (0, 0, 0);
+		this.gameBall.transform.localPosition = this.BALL_CATAPULT_POSITION;
+		this.gameBall.transform.localEulerAngles = this.BALL_CATAPULT_ROTATION;
+
+		gameBall.GetComponent<Rigidbody>().freezeRotation = true;
+
+	}
 }

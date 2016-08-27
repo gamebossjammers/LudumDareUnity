@@ -74,7 +74,7 @@ NavMeshSettings:
   m_ObjectHideFlags: 0
   m_BuildSettings:
     serializedVersion: 2
-    agentRadius: 3.22
+    agentRadius: 6
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.4
@@ -82,7 +82,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     accuratePlacement: 0
     minRegionArea: 2
-    cellSize: 1.0733334
+    cellSize: 2
     manualCellSize: 0
   m_NavMeshData: {fileID: 23800000, guid: ecd1944f1386990479514e6749376b43, type: 2}
 --- !u!1 &2250375
@@ -10957,6 +10957,7 @@ MonoBehaviour:
   strengthMeter: {fileID: 1711411646}
   catapultArm: {fileID: 1613247024}
   mainCamera: {fileID: 2080526684}
+  navMeshcheckRange: 20
 --- !u!1 &1164688544
 GameObject:
   m_ObjectHideFlags: 0
@@ -15381,10 +15382,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400002, guid: a1b147507ac8e2a45958f02a978c95ae, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1613247024}
-  m_LocalRotation: {x: -0.35175204, y: -0.00000041963344, z: -0.0000001904026, w: 0.9360933}
+  m_LocalRotation: {x: -0.38268346, y: -0.0000010865424, z: -0.00000069944883, w: 0.9238795}
   m_LocalPosition: {x: -0.00004365444, y: 0.043015316, z: 0.013474908}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: -41.189, y: -360.0001, z: -360}
+  m_LocalEulerAnglesHint: {x: -45, y: -360.0001, z: -360}
   m_Children:
   - {fileID: 2082778802}
   m_Father: {fileID: 243445178}
@@ -19937,10 +19938,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2082778801}
-  m_LocalRotation: {x: 0.7071068, y: 0.00000046080928, z: -2.842171e-14, w: 0.7071067}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071067}
   m_LocalPosition: {x: -0, y: -0.056148823, z: 0.0051349998}
   m_LocalScale: {x: 0.0075605544, y: 0.007560554, z: 0.007560554}
-  m_LocalEulerAnglesHint: {x: 89.980194, y: 0.0001, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1613247025}
   m_RootOrder: 0
