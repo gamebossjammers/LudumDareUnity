@@ -617,7 +617,7 @@ GameObject:
   - 65: {fileID: 61896134}
   - 23: {fileID: 61896133}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: cata_floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9691,7 +9691,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1018474566}
   - 108: {fileID: 1018474565}
-  - 114: {fileID: 1018474567}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -9745,23 +9744,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &1018474567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1018474564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0830a12b757d7b4aad3bc58c3a84bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bolaDeJuego: {fileID: 2093126295}
-  catapultBase: {fileID: 1125095072}
-  centerPalo: {fileID: 1184017268}
-  strengthMeter: {fileID: 1711411647}
-  cameraAim: {fileID: 2080526685}
-  cameraOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &1018757156
 GameObject:
   m_ObjectHideFlags: 0
@@ -10583,7 +10565,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1125095072}
   m_Layer: 0
-  m_Name: base
+  m_Name: catapult
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10596,7 +10578,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1125095071}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -25.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -10864,6 +10846,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 63237937}
   m_RootOrder: 87
+--- !u!1 &1158406313
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1158406314}
+  - 114: {fileID: 1158406315}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1158406314
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1158406313}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+--- !u!114 &1158406315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1158406313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80a20338181b4474cb72bf989e8fb8bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameBall: {fileID: 2093126294}
+  catapult: {fileID: 1125095071}
+  strengthMeter: {fileID: 1711411646}
+  catapultArm: {fileID: 1184017267}
+  mainCamera: {fileID: 2080526684}
 --- !u!1 &1164688544
 GameObject:
   m_ObjectHideFlags: 0
@@ -11060,7 +11087,7 @@ GameObject:
   - 65: {fileID: 1184017270}
   - 23: {fileID: 1184017269}
   m_Layer: 0
-  m_Name: centerPalo
+  m_Name: cata_arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11072,10 +11099,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1184017267}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.38308007, w: 0.9237152}
+  m_LocalPosition: {x: -0.38135958, y: 0.15268731, z: 0}
   m_LocalScale: {x: 1, y: 13.640664, z: 0.074274175}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45.0492}
   m_Children:
   - {fileID: 2093126295}
   m_Father: {fileID: 1707432287}
@@ -16181,7 +16208,7 @@ GameObject:
   - 65: {fileID: 1707432289}
   - 23: {fileID: 1707432288}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: cata_crux
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16349,7 +16376,7 @@ GameObject:
   - 222: {fileID: 1711411649}
   - 114: {fileID: 1711411648}
   m_Layer: 5
-  m_Name: Image
+  m_Name: strengthMeter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19582,7 +19609,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cae3781c7e4dbe4c9e9995c8ba567c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  catapult: {fileID: 1707432287}
+  cataCrux: {fileID: 1707432287}
+  mainCamera: {fileID: 1873694103}
   ball: {fileID: 2093126295}
 --- !u!1 &2082723128
 GameObject:
@@ -19873,7 +19901,7 @@ GameObject:
   - 23: {fileID: 2093126296}
   - 54: {fileID: 2093126299}
   m_Layer: 0
-  m_Name: bolaDeJuego
+  m_Name: playBall
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

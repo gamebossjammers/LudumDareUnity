@@ -16,7 +16,6 @@ public class TestController : MonoBehaviour {
 	public RectTransform strengthMeter;
 	public Transform cameraAim;
 
-	public Vector3 cameraOffset;
 
 	private enum GameState
 	{

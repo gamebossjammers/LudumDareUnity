@@ -6,12 +6,19 @@ public static class InputManager {
 	public static Vector2 leftJoy = new Vector2 (0,0);
 	public static Vector2 rightJoy = new Vector2 (0,0);
 
-	
+	public static bool launchButton = false;
+	public static bool cameraZoom = false;
+	public static bool cameraTypeChange = false;
+
+
 	// Update is called once per frame
 	public static void checkInputs () 
 	{
 		InputManager.leftJoy = new Vector2 (0, 0);
 		InputManager.rightJoy = new Vector2 (0, 0);
+		InputManager.launchButton = false;
+		InputManager.cameraZoom = false;
+		InputManager.cameraTypeChange = false;
 
 		// LEFT JOYSTICK
 		InputManager.leftJoy.x = ( Input.GetKey (KeyCode.D) ) ? leftJoy.x + 1 : leftJoy.x;
@@ -27,5 +34,9 @@ public static class InputManager {
 		InputManager.rightJoy.y = ( Input.GetKey (KeyCode.UpArrow) ) ? rightJoy.y + 1 : rightJoy.y;
 		InputManager.rightJoy.y = ( Input.GetKey (KeyCode.DownArrow) ) ? rightJoy.y - 1 : rightJoy.y;
 
+		// BUTTONS
+		InputManager.launchButton = ( Input.GetKeyDown (KeyCode.Space) ) ? true : false;
+		InputManager.cameraZoom = ( Input.GetKeyDown (KeyCode.Q) ) ? true : false;
+		InputManager.cameraTypeChange = ( Input.GetKeyDown (KeyCode.E) ) ? true : false;
 	}
 }

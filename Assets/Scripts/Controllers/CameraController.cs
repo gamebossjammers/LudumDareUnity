@@ -1,11 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class CameraController : MonoBehaviour {
 
-	public Transform catapult;
+	public Transform cataCrux;
+	public Transform mainCamera;
 	public Transform ball;
+
+	private readonly float TOP_VIEW_SPEED = 20;
+	private readonly float CAMERA_ROTATION_SPEED = 50;
+
+	private Vector3 cameraRotation;
 
 	private enum cameraStates
 	{
@@ -22,6 +29,9 @@ public class CameraController : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+
+		this.transform.position = this.cataCrux.transform.position;
+
 		currentState = cameraStates.onPosition;
 		this.zoomPosition = 0;
 		zoomDistances.Add (24);
@@ -86,16 +96,11 @@ public class CameraController : MonoBehaviour {
 
 	public void rotateAround()
 	{
-		
-		float CATAPULT_ROTATION = 50 * Time.deltaTime;
 
-		float horizontalPosition = this.transform.eulerAngles.y + (InputManager.rightJoy.x * CATAPULT_ROTATION);
-		float verticalPosition = this.transform.eulerAngles.z + (InputManager.rightJoy.y * CATAPULT_ROTATION);
+		float horizontalPosition = this.transform.eulerAngles.y + (InputManager.rightJoy.x * CAMERA_ROTATION_SPEED * Time.deltaTime);
+		float verticalPosition = this.transform.eulerAngles.z + (InputManager.rightJoy.y * CAMERA_ROTATION_SPEED * Time.deltaTime);
 
 		this.transform.eulerAngles = new Vector3( 0, horizontalPosition , verticalPosition );
-
-
-		// ZOOM
 
 		if ( Input.GetKeyDown(KeyCode.Q) )
 		{
@@ -113,9 +118,8 @@ public class CameraController : MonoBehaviour {
 	public void viewTop()
 	{
 
-		float horizontalMovement = InputManager.rightJoy.x * 10 * Time.deltaTime;
-		float verticalMovement = InputManager.rightJoy.y * 10 * Time.deltaTime;
-
+		float horizontalMovement = InputManager.rightJoy.x * this.TOP_VIEW_SPEED * Time.deltaTime;
+		float verticalMovement = InputManager.rightJoy.y * this.TOP_VIEW_SPEED * Time.deltaTime;
 
 		Camera.main.transform.Translate(horizontalMovement,verticalMovement,0);
 	
@@ -125,4 +129,24 @@ public class CameraController : MonoBehaviour {
 	{
 		this.currentState = cameraStates.flyingBall;
 	}
+
+	/*
+	public void trembleScreen( float trembleTime_ )
+	{
+
+		Vector3 initialPosition = Camera.main.transform.localPosition;
+		Vector3 initialRotation = Camera.main.transform.localEulerAngles;
+
+		Camera.main.transform.DOLocalMove ( ( initialPosition + (Vector3.one * 0.3f) ), (trembleTime_ * 0.5f) ).OnComplete ( () =>
+		{	
+			Camera.main.transform.DOLocalRotate (initialRotation + (Vector3.one * 0.3f), (trembleTime_ * 0.5f)).OnComplete (() =>
+			{
+				Camera.main.transform.localPosition = initialPosition;
+				Camera.main.transform.localEulerAngles = initialRotation;
+			});
+		});
+
+
+	}
+	*/
 }
