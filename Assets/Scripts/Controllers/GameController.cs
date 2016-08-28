@@ -134,7 +134,7 @@ public class GameController : MonoBehaviour {
 
 		this.strengthMeter.GetComponent<RectTransform>().sizeDelta = new Vector2 (100, strength);
 
-		this.strength = (this.strengthUP == true) ? this.strength += (this.STRENGTH_BUILD_SPEED * Time.deltaTime) : this.strength -= (this.STRENGTH_BUILD_SPEED * Time.deltaTime);
+		this.strength = (this.strengthUP == true) ? this.strength += (this.STRENGTH_BUILD_SPEED * Time.deltaTime + (this.strength * 0.1f) ) : this.strength -= (this.STRENGTH_BUILD_SPEED * Time.deltaTime + (this.strength * 0.1f));
 
 		if (this.strength >= 100)
 		{
