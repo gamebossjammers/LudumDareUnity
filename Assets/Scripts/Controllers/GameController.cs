@@ -166,6 +166,8 @@ public class GameController : MonoBehaviour {
 			this.catapultArm.transform.DOLocalRotate ( this.BALL_LAUNCH_STOP_POSITION , 2).OnComplete ( () =>
 			{
 
+				this.mainCamera.transform.DOShakePosition ( ( 50 / this.strength ) , this.strength * 0.02f );
+
 				this.catapultArm.transform.DOLocalRotate ( new Vector3 ( this.armRotation , 0 , 0 ) , ( 2 / this.strength ) ).OnComplete ( () =>
 				{
 					this.addEnergy();
@@ -231,7 +233,6 @@ public class GameController : MonoBehaviour {
 		//this.gameBall.GetComponent<Rigidbody> ().maxAngularVelocity = 200;
 		//this.gameBall.GetComponent<Rigidbody> ().angularVelocity = new Vector3 (0, 0, strength * 0.9f );
 
-
 	}
 
 	private void restartBall()
@@ -239,6 +240,7 @@ public class GameController : MonoBehaviour {
 		this.mainCamera.GetComponent<CameraController> ().restartCamera ();
 
 		this.catapultArm.transform.localEulerAngles = this.CATAPULT_ARM_ROTATION;
+		this.catapult.transform.localEulerAngles = new Vector3 (-90, mainCamera.transform.localEulerAngles.y + 90 , 0);
 
 		this.gameBall.transform.SetParent (this.catapultArm.transform);
 
