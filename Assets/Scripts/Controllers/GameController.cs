@@ -168,28 +168,18 @@ public class GameController : MonoBehaviour {
 
 		currentState = GameState.preparingCatapult;
 
-<<<<<<< HEAD
-        this.catapult.GetComponent<AudioSource>().Play();
-
-        this.catapultArm.transform.DOLocalRotate ( this.BALL_LAUNCH_STOP_POSITION, 1 ).OnComplete ( () =>
-=======
 		this.mainCamera.GetComponent<CameraController> ().setToOnPosition ();
 
 		this.catapultArm.transform.DOLocalRotate ( this.BALL_LAUNCH_STOP_POSITION, 1 ).OnComplete ( () =>
->>>>>>> 2a544bb9a1990e550b30fb7e91aa813862d72d7f
 		{
             
             this.catapultArm.transform.DOLocalRotate ( this.BALL_LAUNCH_STOP_POSITION , 2).OnComplete ( () =>
 			{
                 this.catapult.GetComponent<AudioSource>().Play();
 
-<<<<<<< HEAD
-                this.catapultArm.transform.DOLocalRotate ( new Vector3 ( this.armRotation , 0 , 0 ) , ( 2 / this.strength ) ).OnComplete ( () =>
-=======
 				this.mainCamera.transform.DOShakePosition ( Mathf.Clamp( ( 50 / this.strength ) , 0.1f ,1f) , this.strength * 0.02f );
 
 				this.catapultArm.transform.DOLocalRotate ( new Vector3 ( this.armRotation , 0 , 0 ) , ( 2 / this.strength ) ).OnComplete ( () =>
->>>>>>> 2a544bb9a1990e550b30fb7e91aa813862d72d7f
 				{
 					this.addEnergy();
 					this.currentState = GameState.ballLaunched;
