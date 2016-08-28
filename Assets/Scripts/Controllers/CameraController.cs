@@ -48,8 +48,6 @@ public class CameraController : MonoBehaviour {
 	void Update () 
 	{
 
-		InputManager.checkInputs ();
-
 		this.transform.localPosition = this.cameraAimObject.position;
 
 		if ( InputManager.cameraTypeChange )
