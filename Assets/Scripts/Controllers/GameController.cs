@@ -224,9 +224,12 @@ public class GameController : MonoBehaviour {
 
 		this.gameBall.transform.SetParent (null);
 
-		this.gameBall.GetComponent<Rigidbody> ().AddRelativeForce (Vector3.up * strength, ForceMode.Impulse);
-
 		this.gameBall.GetComponent<Rigidbody>().freezeRotation = false;
+
+		this.gameBall.GetComponent<Rigidbody> ().AddRelativeForce (Vector3.up * strength, ForceMode.Impulse);
+		this.gameBall.GetComponent<Rigidbody> ().maxAngularVelocity = 200;
+		this.gameBall.GetComponent<Rigidbody> ().angularVelocity = new Vector3 (0, 0, strength * 0.9f );
+
 
 	}
 

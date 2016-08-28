@@ -12,7 +12,7 @@ public class CameraController : MonoBehaviour {
 	private Transform cameraAimObject;
 
 	private readonly float TOP_VIEW_SPEED = 20;
-	private readonly float CAMERA_ROTATION_SPEED = 50;
+	private readonly float CAMERA_ROTATION_SPEED = 100;
 
 	private Vector3 cameraRotation;
 	private readonly Vector2 CAMERA_ROTATION_LIMITS = new Vector2 ( 260, 300);
@@ -104,9 +104,9 @@ public class CameraController : MonoBehaviour {
 		verticalPosition = (verticalPosition <= this.CAMERA_ROTATION_LIMITS.x) ? this.CAMERA_ROTATION_LIMITS.x : verticalPosition;
 		verticalPosition = (verticalPosition >= this.CAMERA_ROTATION_LIMITS.y) ? this.CAMERA_ROTATION_LIMITS.y : verticalPosition;
 
-		this.transform.eulerAngles = new Vector3( 0, horizontalPosition , verticalPosition );
+		this.transform.eulerAngles = Vector3.Lerp ( this.transform.eulerAngles, new Vector3( 0, horizontalPosition , verticalPosition ) , 0.75f);
 
-		if ( Input.GetKeyDown(KeyCode.Q) )
+		if ( InputManager.cameraZoom )
 		{
 			zoomPosition++;
 
@@ -114,7 +114,9 @@ public class CameraController : MonoBehaviour {
 
 			Transform cameraTransform = Camera.main.transform;
 
-			cameraTransform.localPosition = new Vector3 (cameraTransform.localPosition.x, zoomDistances[zoomPosition], cameraTransform.localPosition.z);
+			cameraTransform.DOLocalMoveY (zoomDistances [zoomPosition], 0.5f).SetEase (Ease.OutQuart);
+
+			//cameraTransform.localPosition = new Vector3 (cameraTransform.localPosition.x, zoomDistances[zoomPosition], cameraTransform.localPosition.z);
 		}
 	}
 
