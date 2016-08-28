@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
     public AudioSource _canvasAudioSource;
     public AudioClip[] _sounds;
 
+    public delegate void RegularTowerDestroyed();
+    public event RegularTowerDestroyed OnRegularTowerDestroyed;
+
     private int _defaultMoves = 0;
     private bool _bReady = false;
 
@@ -34,9 +37,16 @@ public class GameManager : MonoBehaviour
         StartCoroutine(Loop());
     }
 
+    public void RegularTowerHit(int pNumberOfMovesToAdd)
+    {
+        AddMove(pNumberOfMovesToAdd);
+    }
+
+    // Keep this method for cheating. On regular game flow, external scripts call RegularTowerHit, not this one.
     public void AddMove (int pNumberOfMovesToAdd)
     {
         _movesLeft += pNumberOfMovesToAdd;
+        if (OnRegularTowerDestroyed != null) OnRegularTowerDestroyed();
         //Debug.Log("Adding " + pNumberOfMovesToAdd + " moves. " + _movesLeft + " moves left.");
     }
 

@@ -6,9 +6,9 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: M_Torre_base_Exploded_00
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
+  m_Name: M_RegularTowerBase_Broken
+  m_Shader: {fileID: 4800000, guid: 74fdc93985794c440a856750dcfe1c62, type: 3}
+  m_ShaderKeywords: _NORMALMAP
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -19,14 +19,14 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: a62525173c44d8d4ea8572f9edded76d, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: b2be43ffd36109c4dae16de514da46fa, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -74,6 +74,41 @@ Material:
       data:
         first:
           name: _MetallicGlossMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Diffusemap
+        second:
+          m_Texture: {fileID: 2800000, guid: b135f27b65fe21b40b8320cb261a1d4e, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Normalmap
+        second:
+          m_Texture: {fileID: 2800000, guid: b2be43ffd36109c4dae16de514da46fa, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Roughnessmap
+        second:
+          m_Texture: {fileID: 2800000, guid: 515288ddd2a4a1349a25df612c6688ab, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _AOmap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Emissivemap
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -127,6 +162,30 @@ Material:
         first:
           name: _Metallic
         second: 0
+      data:
+        first:
+          name: _Diffusebands
+        second: 4
+      data:
+        first:
+          name: _Specularbands
+        second: 2
+      data:
+        first:
+          name: _Glossinessmultiplier
+        second: 10
+      data:
+        first:
+          name: _AOpower
+        second: 0
+      data:
+        first:
+          name: _Outlinewidth
+        second: 0
+      data:
+        first:
+          name: _Emissivepower
+        second: 0
     m_Colors:
       data:
         first:
@@ -135,4 +194,4 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+        second: {r: 1, g: 1, b: 1, a: 1}

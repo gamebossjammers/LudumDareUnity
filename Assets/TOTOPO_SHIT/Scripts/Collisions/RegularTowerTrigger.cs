@@ -3,22 +3,18 @@
 public class RegularTowerTrigger : MonoBehaviour
 {
     public int _bonusMoves = 2;
-    public Mesh _brokenMesh;
+    public GameObject _brokenPrefab;
 
-    private MeshFilter _meshFilter;
-
-    private void Awake()
-    {
-        _meshFilter = GetComponent<MeshFilter>();
-    }
 
     private void OnTriggerEnter (Collider other)
     {
         if (other.gameObject.CompareTag("Ball"))
         {
             Debug.Log("Regular Tower hit");
-            GameInstance.GetCurrentGameManager().AddMove(_bonusMoves);
-            _meshFilter.mesh = _brokenMesh;
+            GameInstance.GetCurrentGameManager().RegularTowerHit(_bonusMoves);
+            var go = Instantiate(_brokenPrefab, this.transform.position, this.transform.rotation) as GameObject;
+            go.transform.parent = this.transform.parent;
+            Destroy(gameObject);
         }
     }
 }
