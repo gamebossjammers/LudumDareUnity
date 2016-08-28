@@ -30,7 +30,8 @@ public class GameController : MonoBehaviour {
 		launchBall,
 		preparingCatapult,
 		ballLaunched,
-		ballStopped
+		ballStopped,
+		rebuildCatapult
 
 	};
 	private GameState currentState = GameState.rotateCatapult;
@@ -86,7 +87,7 @@ public class GameController : MonoBehaviour {
                 case GameState.ballLaunched:
                     this.checkIfBallStopped();
                     break;
-                case GameState.ballStopped:
+				case GameState.rebuildCatapult:
                     this.restartGame();
                     break;
             }
@@ -186,15 +187,27 @@ public class GameController : MonoBehaviour {
 
 			if (NavMesh.SamplePosition(this.gameBall.transform.position, out navHit, this.navMeshcheckRange , -1))
 			{
-				this.catapult.transform.position = navHit.position;
 
 				this.currentState = GameState.ballStopped;
+
+				StartCoroutine(letTheBallRun( 3 , navHit) );
+
                 // Subtract 1 move from the pool
                 GameInstance.GetCurrentGameManager().SubtractMove(1);
 
 			}
 				
 		}
+	}
+
+	IEnumerator letTheBallRun(float time , NavMeshHit navHit_ )
+	{
+		yield return new WaitForSeconds(time);
+
+		this.catapult.transform.position = navHit_.position;
+		this.currentState = GameState.rebuildCatapult;
+
+		// Code to execute after the delay
 	}
 
 	public void restartGame()
