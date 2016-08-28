@@ -104,11 +104,11 @@ public class GameController : MonoBehaviour {
 		this.catapultArm.transform.Rotate (verticalRotation, 0, 0);
 
 		// limites de catapulta
-		if (this.catapultArm.transform.localEulerAngles.x <= 5f)
+		if (this.catapultArm.transform.localEulerAngles.x <= 275f)
 		{
 			this.catapultArm.transform.Rotate (-verticalRotation, 0, 0);
 		}
-		if (this.catapultArm.transform.localEulerAngles.x >= 90f)
+		if (this.catapultArm.transform.localEulerAngles.x >= 356f)
 		{
 			this.catapultArm.transform.Rotate (verticalRotation, 0, 0);
 		}
