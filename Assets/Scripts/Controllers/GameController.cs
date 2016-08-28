@@ -178,7 +178,8 @@ public class GameController : MonoBehaviour {
 
 	private void checkIfBallStopped()
 	{
-		if (this.gameBall.GetComponent<Rigidbody> ().velocity.magnitude <= 3)
+
+		if ( (this.gameBall.GetComponent<Rigidbody> ().velocity.magnitude) <= 3 && Physics.Raycast(this.gameBall.transform.position,Vector3.down, 1))
 		{
 			
 			NavMeshHit navHit;

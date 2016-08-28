@@ -29,15 +29,14 @@ public static class InputManager {
 		InputManager.leftJoy.y = ( Input.GetKey (KeyCode.W) ) ? leftJoy.y + 1 : leftJoy.y;
 		InputManager.leftJoy.y = ( Input.GetKey (KeyCode.S) ) ? leftJoy.y - 1 : leftJoy.y;
 
-
+/*
 		// RIGHT JOYSTICK
 		InputManager.rightJoy.x = ( Input.GetKey (KeyCode.RightArrow) ) ? rightJoy.x + 1 : rightJoy.x;
 		InputManager.rightJoy.x = ( Input.GetKey (KeyCode.LeftArrow) ) ? rightJoy.x - 1 : rightJoy.x;
 
 		InputManager.rightJoy.y = ( Input.GetKey (KeyCode.UpArrow) ) ? rightJoy.y + 1 : rightJoy.y;
 		InputManager.rightJoy.y = ( Input.GetKey (KeyCode.DownArrow) ) ? rightJoy.y - 1 : rightJoy.y;
-
-
+*/
 
 		if ( Input.GetMouseButtonDown (0) && !InputManager.mouseClicked)
 		{
@@ -55,13 +54,9 @@ public static class InputManager {
 			InputManager.mouseClicked = false;
 		}
 
-
 		// BUTTONS
 		InputManager.launchButton = ( Input.GetKeyDown (KeyCode.Space) ) ? true : false;
 		InputManager.cameraZoom = ( Input.GetKeyDown (KeyCode.Q) ) ? true : false;
 		InputManager.cameraTypeChange = ( Input.GetKeyDown (KeyCode.E) ) ? true : false;
-
-		Debug.Log (rightJoy);
-
 	}
 }

@@ -15,6 +15,7 @@ public class CameraController : MonoBehaviour {
 	private readonly float CAMERA_ROTATION_SPEED = 50;
 
 	private Vector3 cameraRotation;
+	private readonly Vector2 CAMERA_ROTATION_LIMITS = new Vector2 ( 260, 300);
 
 	private enum cameraStates
 	{
@@ -99,11 +100,15 @@ public class CameraController : MonoBehaviour {
 		float horizontalPosition = this.transform.eulerAngles.y + (InputManager.rightJoy.x * CAMERA_ROTATION_SPEED * Time.deltaTime);
 		float verticalPosition = this.transform.eulerAngles.z + (InputManager.rightJoy.y * CAMERA_ROTATION_SPEED * Time.deltaTime);
 
+		verticalPosition = (verticalPosition <= this.CAMERA_ROTATION_LIMITS.x) ? this.CAMERA_ROTATION_LIMITS.x : verticalPosition;
+		verticalPosition = (verticalPosition >= this.CAMERA_ROTATION_LIMITS.y) ? this.CAMERA_ROTATION_LIMITS.y : verticalPosition;
+
+
+
 		this.transform.eulerAngles = new Vector3( 0, horizontalPosition , verticalPosition );
 
 		if ( Input.GetKeyDown(KeyCode.Q) )
 		{
-
 			zoomPosition++;
 
 			zoomPosition = (zoomPosition > 2) ? 0 : zoomPosition;
