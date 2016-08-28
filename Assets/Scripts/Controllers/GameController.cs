@@ -16,8 +16,10 @@ public class GameController : MonoBehaviour {
 	public GameObject strengthMeter;
 	public GameObject catapultArm;
 	public GameObject mainCamera;
+    // Reference to Catapult's starting position
+    public Transform startLocation;
 
-	public float navMeshcheckRange = 20f;
+    public float navMeshcheckRange = 20f;
 
 	// Estados de juego
 	private enum GameState
@@ -42,6 +44,12 @@ public class GameController : MonoBehaviour {
 	private readonly Vector3 BALL_CATAPULT_POSITION = new Vector3 (0, -0.056188f, 0.005135f);
 	private readonly Vector3 BALL_CATAPULT_ROTATION = new Vector3 (90, 0, 0);
 	private readonly Vector3 CATAPULT_ARM_ROTATION = new Vector3 (-45, 0, 0);
+    
+
+    private void Awake ()
+    {
+        GameInstance.SetCurrentGameController(this);
+    }
 
 	// Use this for initialization
 	void Start () 
@@ -59,26 +67,30 @@ public class GameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		InputManager.checkInputs ();
+        // Do not check catapult controls in any other GameManager state but Playing
+        if (GameInstance.GetCurrentGameManager()._gameState == EGameState.Playing)
+        {
+            InputManager.checkInputs();
 
-		switch (currentState)
-		{
-		case GameState.rotateCatapult:
-			this.rotateCatapult ();
-			break;
-		case GameState.buildStrength:
-			this.buildStrength ();
-			break;
-		case GameState.launchBall:
-			this.launchBall ();
-			break;
-		case GameState.ballLaunched:
-			this.checkIfBallStopped ();
-			break;
-		case GameState.ballStopped:
-			this.restartGame ();
-			break;
-		}
+            switch (currentState)
+            {
+                case GameState.rotateCatapult:
+                    this.rotateCatapult();
+                    break;
+                case GameState.buildStrength:
+                    this.buildStrength();
+                    break;
+                case GameState.launchBall:
+                    this.launchBall();
+                    break;
+                case GameState.ballLaunched:
+                    this.checkIfBallStopped();
+                    break;
+                case GameState.ballStopped:
+                    this.restartGame();
+                    break;
+            }
+        }
 
 	}
 
@@ -177,13 +189,15 @@ public class GameController : MonoBehaviour {
 				this.mainCamera.transform.position = this.catapult.transform.position;
 
 				this.currentState = GameState.ballStopped;
+                // Subtract 1 move from the pool
+                GameInstance.GetCurrentGameManager().SubtractMove(1);
 
 			}
 				
 		}
 	}
 
-	private void restartGame()
+	public void restartGame()
 	{
 		this.restartBall ();
 
@@ -218,4 +232,14 @@ public class GameController : MonoBehaviour {
 		gameBall.GetComponent<Rigidbody>().freezeRotation = true;
 
 	}
+
+    /// <summary>
+    /// Resets the catapult's transform to the one referenced by startLocation
+    /// </summary>
+    public void ResetGame ()
+    {
+        catapult.transform.position = this.startLocation.position;
+        catapult.transform.rotation = this.startLocation.rotation;
+        restartBall();
+    }
 }

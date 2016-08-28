@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     public void AddMove (int pNumberOfMovesToAdd)
     {
         _movesLeft += pNumberOfMovesToAdd;
-        Debug.Log("Adding " + pNumberOfMovesToAdd + " moves. " + _movesLeft + " moves left.");
+        //Debug.Log("Adding " + pNumberOfMovesToAdd + " moves. " + _movesLeft + " moves left.");
     }
 
     public void SubtractMove(int pNumberOfMovesToSubtract)
@@ -47,13 +47,13 @@ public class GameManager : MonoBehaviour
         {
             _movesLeft = 0;
         }
-        Debug.Log("Subtracting " + pNumberOfMovesToSubtract + " moves. " + _movesLeft + " moves left.");
+        //Debug.Log("Subtracting " + pNumberOfMovesToSubtract + " moves. " + _movesLeft + " moves left.");
     }
 
     public void MasterTowerDestroyed ()
     {
         _masterTowerDestroyed = true;
-        Debug.Log("Master Tower Destroyed.");
+        //Debug.Log("Master Tower Destroyed.");
     }
 
     public void SetReady ()
@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator GameReady ()
     {
         PlaySound(0); // Ready!!
-        Debug.Log("Ready!");
+        //Debug.Log("Ready!");
         GameInstance.GetCurrentWindowManager().Open(0);
         while (!_bReady)
         {
@@ -83,9 +83,10 @@ public class GameManager : MonoBehaviour
     {
         PlaySound(1); // Go!
         GameInstance.GetCurrentWindowManager().Open(1);
+        _gameState = EGameState.Playing;
         while (!(_movesLeft <= 0 || _masterTowerDestroyed))
         {
-            Debug.Log("Tick!");
+            //Debug.Log("Tick!");
             yield return new WaitForSeconds(_loopDelay);
         }
     }
@@ -98,14 +99,14 @@ public class GameManager : MonoBehaviour
             PlaySound(2); // Congratulations!!
             GameInstance.GetCurrentWindowManager().Open(2);
             _gameState = EGameState.Win;
-            Debug.Log("You Won!");
+            //Debug.Log("You Won!");
         }
         else
         {
             PlaySound(3); // Game Over
             GameInstance.GetCurrentWindowManager().Open(3);
             _gameState = EGameState.Lose;
-            Debug.Log("You Died!");
+            //Debug.Log("You Died!");
         }
     }
 
@@ -121,7 +122,8 @@ public class GameManager : MonoBehaviour
         _movesLeft = _defaultMoves;
         _masterTowerDestroyed = false;
         _bReady = false;
-        Debug.Log("Restarting the game.");
+        GameInstance.GetCurrentGameController().ResetGame();
+        //Debug.Log("Restarting the game.");
         StopAllCoroutines();
         StartCoroutine(Loop());
     }

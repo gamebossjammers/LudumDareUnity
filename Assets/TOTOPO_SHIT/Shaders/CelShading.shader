@@ -275,5 +275,4 @@ Shader "Shader Forge/CelShading" {
         }
     }
     FallBack "Diffuse"
-    CustomEditor "ShaderForgeMaterialInspector"
 }

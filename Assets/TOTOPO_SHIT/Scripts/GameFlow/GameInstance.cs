@@ -7,6 +7,7 @@ public class GameInstance : Singleton<GameInstance>
 
     private static GameManager _currentGameManager;
     private static WindowManager _currentWindowManager;
+    private static GameController _currentGameController;
 
     /// <summary>
     /// Returns the instance of the current level game manager.
@@ -48,5 +49,26 @@ public class GameInstance : Singleton<GameInstance>
     public static void SetCurrentWindowManager(WindowManager pWindowManager)
     {
         _currentWindowManager = pWindowManager;
+    }
+
+    /// <summary>
+    /// Returns the instance of the current level game controller.
+    /// The game controller manages the catapult.
+    /// </summary>
+    /// <returns>The current level game controller instance</returns>
+    public static GameController GetCurrentGameController()
+    {
+        return _currentGameController;
+    }
+
+
+    /// <summary>
+    /// When the GameController is loaded, 
+    /// it registers itself into the GameInstance with this method.
+    /// </summary>
+    /// <param name="pGameController">Current level Game Controller</param>
+    public static void SetCurrentGameController(GameController pGameController)
+    {
+        _currentGameController = pGameController;
     }
 }

@@ -10,4 +10,9 @@ public class PlayingUIWindow : BaseWindow
     {
         _movesLeftCounter.text = GameInstance.GetCurrentGameManager()._movesLeft.ToString();
     }
+
+    public void Restart ()
+    {
+        GameInstance.GetCurrentGameManager().Reset();
+    }
 }
