@@ -32,7 +32,8 @@ public class GameController : MonoBehaviour {
 		launchBall,
 		preparingCatapult,
 		ballLaunched,
-		ballStopped
+		ballStopped,
+		rebuildCatapult
 
 	};
 	private GameState currentState = GameState.rotateCatapult;
@@ -88,7 +89,7 @@ public class GameController : MonoBehaviour {
                 case GameState.ballLaunched:
                     this.checkIfBallStopped();
                     break;
-                case GameState.ballStopped:
+				case GameState.rebuildCatapult:
                     this.restartGame();
                     break;
             }
@@ -167,16 +168,28 @@ public class GameController : MonoBehaviour {
 
 		currentState = GameState.preparingCatapult;
 
+<<<<<<< HEAD
         this.catapult.GetComponent<AudioSource>().Play();
 
         this.catapultArm.transform.DOLocalRotate ( this.BALL_LAUNCH_STOP_POSITION, 1 ).OnComplete ( () =>
+=======
+		this.mainCamera.GetComponent<CameraController> ().setToOnPosition ();
+
+		this.catapultArm.transform.DOLocalRotate ( this.BALL_LAUNCH_STOP_POSITION, 1 ).OnComplete ( () =>
+>>>>>>> 2a544bb9a1990e550b30fb7e91aa813862d72d7f
 		{
             
             this.catapultArm.transform.DOLocalRotate ( this.BALL_LAUNCH_STOP_POSITION , 2).OnComplete ( () =>
 			{
                 this.catapult.GetComponent<AudioSource>().Play();
 
+<<<<<<< HEAD
                 this.catapultArm.transform.DOLocalRotate ( new Vector3 ( this.armRotation , 0 , 0 ) , ( 2 / this.strength ) ).OnComplete ( () =>
+=======
+				this.mainCamera.transform.DOShakePosition ( Mathf.Clamp( ( 50 / this.strength ) , 0.1f ,1f) , this.strength * 0.02f );
+
+				this.catapultArm.transform.DOLocalRotate ( new Vector3 ( this.armRotation , 0 , 0 ) , ( 2 / this.strength ) ).OnComplete ( () =>
+>>>>>>> 2a544bb9a1990e550b30fb7e91aa813862d72d7f
 				{
 					this.addEnergy();
 					this.currentState = GameState.ballLaunched;
@@ -197,15 +210,27 @@ public class GameController : MonoBehaviour {
 
 			if (NavMesh.SamplePosition(this.gameBall.transform.position, out navHit, this.navMeshcheckRange , -1))
 			{
-				this.catapult.transform.position = navHit.position;
 
 				this.currentState = GameState.ballStopped;
+
+				StartCoroutine(letTheBallRun( 3 , navHit) );
+
                 // Subtract 1 move from the pool
                 GameInstance.GetCurrentGameManager().SubtractMove(1);
 
 			}
 				
 		}
+	}
+
+	IEnumerator letTheBallRun(float time , NavMeshHit navHit_ )
+	{
+		yield return new WaitForSeconds(time);
+
+		this.catapult.transform.position = navHit_.position;
+		this.currentState = GameState.rebuildCatapult;
+
+		// Code to execute after the delay
 	}
 
 	public void restartGame()
@@ -226,6 +251,9 @@ public class GameController : MonoBehaviour {
 
 		this.gameBall.GetComponent<Rigidbody>().freezeRotation = false;
 
+		//this.gameBall.GetComponent<Rigidbody> ().maxAngularVelocity = 200;
+		//this.gameBall.GetComponent<Rigidbody> ().angularVelocity = new Vector3 (0, 0, strength * 0.9f );
+
 	}
 
 	private void restartBall()
@@ -233,6 +261,7 @@ public class GameController : MonoBehaviour {
 		this.mainCamera.GetComponent<CameraController> ().restartCamera ();
 
 		this.catapultArm.transform.localEulerAngles = this.CATAPULT_ARM_ROTATION;
+		this.catapult.transform.localEulerAngles = new Vector3 (-90, mainCamera.transform.localEulerAngles.y + 90 , 0);
 
 		this.gameBall.transform.SetParent (this.catapultArm.transform);
 
