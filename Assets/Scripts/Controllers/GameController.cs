@@ -166,7 +166,7 @@ public class GameController : MonoBehaviour {
 			this.catapultArm.transform.DOLocalRotate ( this.BALL_LAUNCH_STOP_POSITION , 2).OnComplete ( () =>
 			{
 
-				this.mainCamera.transform.DOShakePosition ( ( 50 / this.strength ) , this.strength * 0.02f );
+				this.mainCamera.transform.DOShakePosition ( Mathf.Clamp( ( 50 / this.strength ) , 0.1f ,1f) , this.strength * 0.02f );
 
 				this.catapultArm.transform.DOLocalRotate ( new Vector3 ( this.armRotation , 0 , 0 ) , ( 2 / this.strength ) ).OnComplete ( () =>
 				{
