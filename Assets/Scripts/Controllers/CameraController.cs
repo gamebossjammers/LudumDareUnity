@@ -21,6 +21,7 @@ public class CameraController : MonoBehaviour {
 	{
 		onPosition,
 		topView,
+		transitionState,
 		flyingBall
 	}
 
@@ -55,23 +56,36 @@ public class CameraController : MonoBehaviour {
 		{
 			if (this.currentState == cameraStates.onPosition)
 			{
-				this.transform.localEulerAngles = new Vector3 (0, 0, 0);
 
-				Camera.main.transform.localPosition = new Vector3 (-8, 150, 0);
-				Camera.main.transform.localEulerAngles = new Vector3 (90, 270, 0);
+				this.currentState = cameraStates.transitionState;
+
+				Camera.main.transform.DOPause ();
+
+				this.transform.DOLocalRotate (new Vector3 (0, 0, 0), 0.5f).SetEase (Ease.InExpo);
+				Camera.main.transform.DOLocalMove ( new Vector3 (-8, 150, 0), 0.5f).SetEase (Ease.InExpo);
+				Camera.main.transform.DOLocalRotate ( new Vector3 (90, 270, 0), 0.5f ).SetEase (Ease.InExpo).OnComplete( () =>
+				{
+					this.currentState = cameraStates.topView;
+				});
 
 			} 
 			else if (this.currentState == cameraStates.topView)
 			{
-				this.transform.localEulerAngles = new Vector3 (0, 0, -90);
 
-				Camera.main.transform.localPosition = new Vector3 (-8, 24, 0);
-				Camera.main.transform.localEulerAngles = new Vector3 (90, -270, -180);
+				this.currentState = cameraStates.transitionState;
+
+				this.zoomPosition = 0;
+
+				Camera.main.transform.DOPause ();
+
+				this.transform.DOLocalRotate ( new Vector3 ( 0, this.cataCrux.parent.localEulerAngles.y - 90 , 0 ), 0.5f).SetEase (Ease.InExpo);
+				Camera.main.transform.DOLocalMove ( new Vector3 (-8, 24, 0), 0.5f).SetEase (Ease.InExpo);
+				Camera.main.transform.DOLocalRotate ( new Vector3 (90, -270, -180), 0.5f ).SetEase (Ease.InExpo).OnComplete( () =>
+				{
+					this.currentState = cameraStates.onPosition;
+				});
 			}
-
-			this.currentState = (this.currentState == cameraStates.onPosition) ? cameraStates.topView : cameraStates.onPosition;
-
-
+				
 		}
 
 	}
