@@ -149,6 +149,15 @@ public class CameraController : MonoBehaviour {
 		this.cameraAimObject = this.ball;
 	}
 
+	public void setToOnPosition()
+	{
+		this.currentState = cameraStates.onPosition;
+
+		this.transform.localEulerAngles = new Vector3 ( 0, this.cataCrux.parent.localEulerAngles.y - 90 , 0 );
+		Camera.main.transform.localPosition = new Vector3 (-8, 24, 0);
+		Camera.main.transform.localEulerAngles = new Vector3 (90, -270, -180);
+	}
+
 	public void restartCamera()
 	{
 		this.cameraAimObject = this.cataCrux.transform;
