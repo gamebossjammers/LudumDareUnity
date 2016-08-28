@@ -36,7 +36,7 @@ public class GameController : MonoBehaviour {
 	private GameState currentState = GameState.rotateCatapult;
 	private GameState previousState = GameState.none;
 
-	private readonly float CATAPULT_HORIZONTAL_ROTATION_SPEED = 25f;
+	private readonly float CATAPULT_HORIZONTAL_ROTATION_SPEED = 50f;
 	private readonly float CATAPULT_VERTICAL_ROTATION_SPEED = 25f;
 	private readonly float STRENGTH_BUILD_SPEED = 170f;
 
@@ -178,8 +178,8 @@ public class GameController : MonoBehaviour {
 
 	private void checkIfBallStopped()
 	{
-
-		if ( (this.gameBall.GetComponent<Rigidbody> ().velocity.magnitude) <= 3 && Physics.Raycast(this.gameBall.transform.position,Vector3.down, 1))
+		// Comprobamos
+		if ( (this.gameBall.GetComponent<Rigidbody> ().velocity.magnitude) <= 5 && Physics.Raycast(this.gameBall.transform.position,Vector3.down, 1))
 		{
 			
 			NavMeshHit navHit;
@@ -187,7 +187,6 @@ public class GameController : MonoBehaviour {
 			if (NavMesh.SamplePosition(this.gameBall.transform.position, out navHit, this.navMeshcheckRange , -1))
 			{
 				this.catapult.transform.position = navHit.position;
-				this.mainCamera.transform.position = this.catapult.transform.position;
 
 				this.currentState = GameState.ballStopped;
                 // Subtract 1 move from the pool
@@ -201,6 +200,7 @@ public class GameController : MonoBehaviour {
 	public void restartGame()
 	{
 		this.restartBall ();
+		this.mainCamera.GetComponent<CameraController>().restartCamera();
 
 		this.currentState = GameState.rotateCatapult;
 	}
@@ -219,11 +219,11 @@ public class GameController : MonoBehaviour {
 
 	private void restartBall()
 	{
+		this.mainCamera.GetComponent<CameraController> ().restartCamera ();
 
 		this.catapultArm.transform.localEulerAngles = this.CATAPULT_ARM_ROTATION;
 
 		this.gameBall.transform.SetParent (this.catapultArm.transform);
-
 
 		this.gameBall.GetComponent<Rigidbody> ().useGravity = false;
 		this.gameBall.GetComponent<Rigidbody> ().velocity = new Vector3 (0, 0, 0);

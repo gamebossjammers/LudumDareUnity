@@ -100,10 +100,9 @@ public class CameraController : MonoBehaviour {
 		float horizontalPosition = this.transform.eulerAngles.y + (InputManager.rightJoy.x * CAMERA_ROTATION_SPEED * Time.deltaTime);
 		float verticalPosition = this.transform.eulerAngles.z + (InputManager.rightJoy.y * CAMERA_ROTATION_SPEED * Time.deltaTime);
 
+		// CAMERA LIMITS
 		verticalPosition = (verticalPosition <= this.CAMERA_ROTATION_LIMITS.x) ? this.CAMERA_ROTATION_LIMITS.x : verticalPosition;
 		verticalPosition = (verticalPosition >= this.CAMERA_ROTATION_LIMITS.y) ? this.CAMERA_ROTATION_LIMITS.y : verticalPosition;
-
-
 
 		this.transform.eulerAngles = new Vector3( 0, horizontalPosition , verticalPosition );
 
@@ -132,6 +131,11 @@ public class CameraController : MonoBehaviour {
 	public void followBall()
 	{
 		this.cameraAimObject = this.ball;
+	}
+
+	public void restartCamera()
+	{
+		this.cameraAimObject = this.cataCrux.transform;
 	}
 		
 }
