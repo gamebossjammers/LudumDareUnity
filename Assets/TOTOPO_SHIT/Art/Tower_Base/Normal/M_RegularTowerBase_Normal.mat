@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: M_RegularTowerBase_Normal
-  m_Shader: {fileID: 4800000, guid: 74fdc93985794c440a856750dcfe1c62, type: 3}
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _NORMALMAP
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
@@ -137,7 +137,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: 0.5
+        second: 0.1
       data:
         first:
           name: _BumpScale
@@ -169,11 +169,11 @@ Material:
       data:
         first:
           name: _Specularbands
-        second: 4
+        second: 2
       data:
         first:
           name: _Glossinessmultiplier
-        second: 16.9
+        second: 20
       data:
         first:
           name: _AOpower

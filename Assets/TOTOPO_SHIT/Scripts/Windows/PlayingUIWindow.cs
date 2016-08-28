@@ -16,6 +16,7 @@ public class PlayingUIWindow : BaseWindow
 
     void OnDisable()
     {
+        //if (GameInstance.GetCurrentGameManager().OnRegularTowerDestroyed != null)
         GameInstance.GetCurrentGameManager().OnRegularTowerDestroyed -= ShowRegularTowerPanel;
     }
 

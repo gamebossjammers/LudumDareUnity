@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using DG.Tweening;
+//using System;
 
 public class GameController : MonoBehaviour {
 
@@ -12,8 +13,9 @@ public class GameController : MonoBehaviour {
 	private float armRotation = 0;
 
 	public GameObject gameBall;
-	public GameObject catapult;
-	public GameObject strengthMeter;
+    public GameObject catapult;
+
+    public GameObject strengthMeter;
 	public GameObject catapultArm;
 	public GameObject mainCamera;
     // Reference to Catapult's starting position
@@ -94,7 +96,12 @@ public class GameController : MonoBehaviour {
 
 	}
 
-	private void rotateCatapult()
+    public void DisableCollider()
+    {
+        gameBall.GetComponent<SphereCollider>().enabled = false;
+    }
+
+    private void rotateCatapult()
 	{
 
 		float horizontalRotation = this.transform.eulerAngles.y + (InputManager.leftJoy.x * CATAPULT_HORIZONTAL_ROTATION_SPEED * Time.deltaTime);
@@ -160,12 +167,16 @@ public class GameController : MonoBehaviour {
 
 		currentState = GameState.preparingCatapult;
 
-		this.catapultArm.transform.DOLocalRotate ( this.BALL_LAUNCH_STOP_POSITION, 1 ).OnComplete ( () =>
-		{
-			this.catapultArm.transform.DOLocalRotate ( this.BALL_LAUNCH_STOP_POSITION , 2).OnComplete ( () =>
-			{
+        this.catapult.GetComponent<AudioSource>().Play();
 
-				this.catapultArm.transform.DOLocalRotate ( new Vector3 ( this.armRotation , 0 , 0 ) , ( 2 / this.strength ) ).OnComplete ( () =>
+        this.catapultArm.transform.DOLocalRotate ( this.BALL_LAUNCH_STOP_POSITION, 1 ).OnComplete ( () =>
+		{
+            
+            this.catapultArm.transform.DOLocalRotate ( this.BALL_LAUNCH_STOP_POSITION , 2).OnComplete ( () =>
+			{
+                this.catapult.GetComponent<AudioSource>().Play();
+
+                this.catapultArm.transform.DOLocalRotate ( new Vector3 ( this.armRotation , 0 , 0 ) , ( 2 / this.strength ) ).OnComplete ( () =>
 				{
 					this.addEnergy();
 					this.currentState = GameState.ballLaunched;

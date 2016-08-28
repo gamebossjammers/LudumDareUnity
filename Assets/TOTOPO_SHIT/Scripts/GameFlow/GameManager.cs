@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     public void RegularTowerHit(int pNumberOfMovesToAdd)
     {
+        if (OnRegularTowerDestroyed != null) OnRegularTowerDestroyed();
         AddMove(pNumberOfMovesToAdd);
     }
 
@@ -46,7 +47,6 @@ public class GameManager : MonoBehaviour
     public void AddMove (int pNumberOfMovesToAdd)
     {
         _movesLeft += pNumberOfMovesToAdd;
-        if (OnRegularTowerDestroyed != null) OnRegularTowerDestroyed();
         //Debug.Log("Adding " + pNumberOfMovesToAdd + " moves. " + _movesLeft + " moves left.");
     }
 
@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator GameReady ()
     {
-        PlaySound(0); // Ready!!
+        StartCoroutine(PlaySound(0)); // Ready!!
         //Debug.Log("Ready!");
         GameInstance.GetCurrentWindowManager().Open(0);
         while (!_bReady)
@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator GamePlaying ()
     {
-        PlaySound(1); // Go!
+        StartCoroutine(PlaySound(1)); // Go!
         GameInstance.GetCurrentWindowManager().Open(1);
         _gameState = EGameState.Playing;
         while (!(_movesLeft <= 0 || _masterTowerDestroyed))
@@ -106,22 +106,23 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(_loopDelay);
         if (_masterTowerDestroyed)
         {
-            PlaySound(2); // Congratulations!!
+            StartCoroutine(PlaySound(2)); // Congratulations!!
             GameInstance.GetCurrentWindowManager().Open(2);
             _gameState = EGameState.Win;
             //Debug.Log("You Won!");
         }
         else
         {
-            PlaySound(3); // Game Over
+            StartCoroutine(PlaySound(3)); // Game Over
             GameInstance.GetCurrentWindowManager().Open(3);
             _gameState = EGameState.Lose;
             //Debug.Log("You Died!");
         }
     }
 
-    private void PlaySound(int pIndex)
+    private IEnumerator PlaySound(int pIndex)
     {
+        yield return new WaitForSeconds(_loopDelay);
         _canvasAudioSource.clip = _sounds[pIndex];
         _canvasAudioSource.Play();
     }
