@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public enum EGameState
@@ -129,6 +130,7 @@ public class GameManager : MonoBehaviour
 
     public void Reset ()
     {
+        /*
         _gameState = EGameState.Ready;
         _movesLeft = _defaultMoves;
         _masterTowerDestroyed = false;
@@ -137,5 +139,8 @@ public class GameManager : MonoBehaviour
         //Debug.Log("Restarting the game.");
         StopAllCoroutines();
         StartCoroutine(Loop());
+        */
+        StopAllCoroutines();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);        
     }
 }

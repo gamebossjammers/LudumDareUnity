@@ -169,8 +169,8 @@ public class GameController : MonoBehaviour {
 		currentState = GameState.preparingCatapult;
 
 		this.mainCamera.GetComponent<CameraController> ().setToOnPosition ();
-
-		this.catapultArm.transform.DOLocalRotate ( this.BALL_LAUNCH_STOP_POSITION, 1 ).OnComplete ( () =>
+        this.catapult.GetComponent<AudioSource>().Play();
+        this.catapultArm.transform.DOLocalRotate ( this.BALL_LAUNCH_STOP_POSITION, 1 ).OnComplete ( () =>
 		{
             
             this.catapultArm.transform.DOLocalRotate ( this.BALL_LAUNCH_STOP_POSITION , 2).OnComplete ( () =>

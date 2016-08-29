@@ -10,7 +10,7 @@ public class RegularTowerTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ball"))
         {
-            Debug.Log("Regular Tower hit");
+            //Debug.Log("Regular Tower hit");
             GameInstance.GetCurrentGameManager().RegularTowerHit(_bonusMoves);
             var go = Instantiate(_brokenPrefab, this.transform.position, this.transform.rotation) as GameObject;
             go.transform.parent = this.transform.parent;
