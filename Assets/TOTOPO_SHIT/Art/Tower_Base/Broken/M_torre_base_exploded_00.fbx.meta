@@ -1,0 +1,145 @@
+fileFormatVersion: 2
+guid: df58b8ce3fb8ed84eb68f8b420f8d03c
+timeCreated: 1472998434
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: M_torre_base_exploded_00_cell.000
+    100004: M_torre_base_exploded_00_cell.001
+    100006: M_torre_base_exploded_00_cell.002
+    100008: M_torre_base_exploded_00_cell.003
+    100010: M_torre_base_exploded_00_cell.004
+    100012: M_torre_base_exploded_00_cell.005
+    100014: M_torre_base_exploded_00_cell.006
+    100016: M_torre_base_exploded_00_cell.007
+    100018: M_torre_base_exploded_00_cell.008
+    100020: M_torre_base_exploded_00_cell.009
+    100022: M_torre_base_exploded_00_cell.010
+    100024: M_torre_base_exploded_00_cell.011
+    400000: //RootNode
+    400002: M_torre_base_exploded_00_cell.000
+    400004: M_torre_base_exploded_00_cell.001
+    400006: M_torre_base_exploded_00_cell.002
+    400008: M_torre_base_exploded_00_cell.003
+    400010: M_torre_base_exploded_00_cell.004
+    400012: M_torre_base_exploded_00_cell.005
+    400014: M_torre_base_exploded_00_cell.006
+    400016: M_torre_base_exploded_00_cell.007
+    400018: M_torre_base_exploded_00_cell.008
+    400020: M_torre_base_exploded_00_cell.009
+    400022: M_torre_base_exploded_00_cell.010
+    400024: M_torre_base_exploded_00_cell.011
+    2300000: M_torre_base_exploded_00_cell.000
+    2300002: M_torre_base_exploded_00_cell.001
+    2300004: M_torre_base_exploded_00_cell.002
+    2300006: M_torre_base_exploded_00_cell.003
+    2300008: M_torre_base_exploded_00_cell.004
+    2300010: M_torre_base_exploded_00_cell.005
+    2300012: M_torre_base_exploded_00_cell.006
+    2300014: M_torre_base_exploded_00_cell.007
+    2300016: M_torre_base_exploded_00_cell.008
+    2300018: M_torre_base_exploded_00_cell.009
+    2300020: M_torre_base_exploded_00_cell.010
+    2300022: M_torre_base_exploded_00_cell.011
+    3300000: M_torre_base_exploded_00_cell.000
+    3300002: M_torre_base_exploded_00_cell.001
+    3300004: M_torre_base_exploded_00_cell.002
+    3300006: M_torre_base_exploded_00_cell.003
+    3300008: M_torre_base_exploded_00_cell.004
+    3300010: M_torre_base_exploded_00_cell.005
+    3300012: M_torre_base_exploded_00_cell.006
+    3300014: M_torre_base_exploded_00_cell.007
+    3300016: M_torre_base_exploded_00_cell.008
+    3300018: M_torre_base_exploded_00_cell.009
+    3300020: M_torre_base_exploded_00_cell.010
+    3300022: M_torre_base_exploded_00_cell.011
+    4300000: M_torre_base_exploded_00_cell.011
+    4300002: M_torre_base_exploded_00_cell.010
+    4300004: M_torre_base_exploded_00_cell.009
+    4300006: M_torre_base_exploded_00_cell.008
+    4300008: M_torre_base_exploded_00_cell.007
+    4300010: M_torre_base_exploded_00_cell.006
+    4300012: M_torre_base_exploded_00_cell.005
+    4300014: M_torre_base_exploded_00_cell.004
+    4300016: M_torre_base_exploded_00_cell.003
+    4300018: M_torre_base_exploded_00_cell.001
+    4300020: M_torre_base_exploded_00_cell.000
+    4300022: M_torre_base_exploded_00_cell.002
+    6400000: M_torre_base_exploded_00_cell.000
+    6400002: M_torre_base_exploded_00_cell.001
+    6400004: M_torre_base_exploded_00_cell.002
+    6400006: M_torre_base_exploded_00_cell.003
+    6400008: M_torre_base_exploded_00_cell.004
+    6400010: M_torre_base_exploded_00_cell.005
+    6400012: M_torre_base_exploded_00_cell.006
+    6400014: M_torre_base_exploded_00_cell.007
+    6400016: M_torre_base_exploded_00_cell.008
+    6400018: M_torre_base_exploded_00_cell.009
+    6400020: M_torre_base_exploded_00_cell.010
+    6400022: M_torre_base_exploded_00_cell.011
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

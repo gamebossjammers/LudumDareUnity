@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 4591ad9ad30edb74eae63f552e46d932
-timeCreated: 1472389489
+guid: c60c10f5eed31a34e85c74540871c6e1
+timeCreated: 1472998774
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,10 +9,8 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: M_torre_base_00_001
+    4300000: M_torre_base_00.001
     6400000: //RootNode
-    7400000: Default Take
-    9500000: //RootNode
   materials:
     importMaterials: 0
     materialName: 0
@@ -20,7 +18,7 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleRotations: 1
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
