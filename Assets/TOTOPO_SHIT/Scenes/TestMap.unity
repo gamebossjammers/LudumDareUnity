@@ -1217,6 +1217,14 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11480218, guid: 43c8aab5e9c67a94e94fb103fb7dd88c, type: 2}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11461258, guid: 43c8aab5e9c67a94e94fb103fb7dd88c, type: 2}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 43c8aab5e9c67a94e94fb103fb7dd88c, type: 2}
   m_IsPrefabParent: 0
