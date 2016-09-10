@@ -4,7 +4,6 @@ using System.Collections;
 public class WindowManager : MonoBehaviour
 {
     /// <summary>List of windows in the scene</summary>
-    
     public BaseWindow[] _windows;
 
     /// <summary>Current window index from the list</summary>
@@ -93,7 +92,7 @@ public class WindowManager : MonoBehaviour
     // Registers the manager and opens the default window
     void Start()
     {
-        BaseWindow._manager = this;
+        //BaseWindow._manager = this;
         Open(_defaultWindowIndex);
     }
 }

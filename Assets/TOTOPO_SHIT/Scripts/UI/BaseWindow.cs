@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 public class BaseWindow : MonoBehaviour
 {
     /// <summary>The WindowManager responsible for this window</summary>
-    public static WindowManager _manager;
+    //public static WindowManager _manager;
     /// <summary>The item to be first selected when this window is opened (if any)</summary>
     [SerializeField]
     protected GameObject _firstSelected;
