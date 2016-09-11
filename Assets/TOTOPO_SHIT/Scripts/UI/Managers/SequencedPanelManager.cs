@@ -16,7 +16,6 @@ public class SequencedPanelManager : MonoBehaviour
     // Registers the manager and opens the default window
     private void OnEnable()
     {
-        Debug.Log("opening panel");
         //BasePanel._manager = this;
         Open(_defaultPanel);
     }

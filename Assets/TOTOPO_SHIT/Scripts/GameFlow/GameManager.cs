@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public enum EGameState
 {
     Ready,
+    Instructions,
     Playing,
     Win,
     Lose
@@ -92,14 +93,30 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator GamePlaying ()
     {
+        ShowInstructions();
+        while (_gameState != EGameState.Playing)
+        {
+            yield return new WaitForSeconds(_loopDelay);
+        }
         StartCoroutine(PlaySound(1)); // Go!
-        GameInstance.GetCurrentWindowManager().Open(1);
-        _gameState = EGameState.Playing;
         while (!(_movesLeft <= 0 || _masterTowerDestroyed))
         {
             //Debug.Log("Tick!");
             yield return new WaitForSeconds(_loopDelay);
         }
+    }
+
+
+    public void ShowInstructions ()
+    {
+        _gameState = EGameState.Instructions;
+        GameInstance.GetCurrentWindowManager().Open(1);
+    }
+
+    public void HideInstructions ()
+    {
+        _gameState = EGameState.Playing;
+        GameInstance.GetCurrentWindowManager().Open(2);
     }
 
     public IEnumerator GameOver()
