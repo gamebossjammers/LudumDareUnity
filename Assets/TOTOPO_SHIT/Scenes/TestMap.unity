@@ -321,10 +321,10 @@ RectTransform:
   - {fileID: 1442920989}
   m_Father: {fileID: 347925211}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 136.76973, y: -90.5}
+  m_SizeDelta: {x: 263.53946, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &62248504
 MonoBehaviour:
@@ -1953,10 +1953,10 @@ RectTransform:
   - {fileID: 558354002}
   m_Father: {fileID: 1288228555}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 51.25, y: -35}
+  m_SizeDelta: {x: 27.5, y: 30}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &243445175
 GameObject:
@@ -3298,7 +3298,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &410447624
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4131,10 +4131,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 966107065}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 204.97513, y: -27.5}
+  m_SizeDelta: {x: 117.12865, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &525195628
 MonoBehaviour:
@@ -5430,10 +5430,10 @@ RectTransform:
   - {fileID: 1441220460}
   m_Father: {fileID: 1288228555}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 18.75, y: -35}
+  m_SizeDelta: {x: 27.5, y: 30}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &717502317
 MonoBehaviour:
@@ -6048,7 +6048,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &782330664
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7399,10 +7399,10 @@ RectTransform:
   - {fileID: 525195627}
   m_Father: {fileID: 347925211}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 136.76973, y: -30.5}
+  m_SizeDelta: {x: 263.53946, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &966107066
 MonoBehaviour:
@@ -8099,10 +8099,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 966107065}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 73.20541, y: -27.5}
+  m_SizeDelta: {x: 146.41081, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1078182215
 MonoBehaviour:
@@ -8157,7 +8157,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: When the Power Bar is going Up and Down, it's time to choose the strength
-    pushing Space at the desired level
+    by pressing Space
 --- !u!222 &1078182217
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10458,10 +10458,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 62248503}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 204.97513, y: -27.5}
+  m_SizeDelta: {x: 117.12865, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1442920990
 MonoBehaviour:
@@ -10882,10 +10882,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 62248503}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 73.20541, y: -27.5}
+  m_SizeDelta: {x: 146.41081, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1642273166
 MonoBehaviour:
@@ -11721,7 +11721,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Choose the angle of the shot with W and S
+  m_Text: Choose the stone's angle with W and S
 --- !u!222 &1891938976
 CanvasRenderer:
   m_ObjectHideFlags: 0
