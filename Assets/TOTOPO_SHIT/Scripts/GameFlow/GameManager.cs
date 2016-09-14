@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator GamePlaying ()
     {
         ShowInstructions();
-        while (_gameState != EGameState.Playing)
+        while (_gameState == EGameState.Instructions)
         {
             yield return new WaitForSeconds(_loopDelay);
         }
@@ -125,14 +125,14 @@ public class GameManager : MonoBehaviour
         if (_masterTowerDestroyed)
         {
             StartCoroutine(PlaySound(2)); // Congratulations!!
-            GameInstance.GetCurrentWindowManager().Open(2);
+            GameInstance.GetCurrentWindowManager().Open(3);
             _gameState = EGameState.Win;
             //Debug.Log("You Won!");
         }
         else
         {
             StartCoroutine(PlaySound(3)); // Game Over
-            GameInstance.GetCurrentWindowManager().Open(3);
+            GameInstance.GetCurrentWindowManager().Open(4);
             _gameState = EGameState.Lose;
             //Debug.Log("You Died!");
         }
