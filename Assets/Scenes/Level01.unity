@@ -89,7 +89,7 @@ NavMeshSettings:
     minRegionArea: 2
     cellSize: 3.3333333
     manualCellSize: 0
-  m_NavMeshData: {fileID: 23800000, guid: 22ca0d72ae675ad4c934dfe848db6d5c, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: e67ca5f14b7e1304e80284eca9d5b768, type: 2}
 --- !u!1 &14757583
 GameObject:
   m_ObjectHideFlags: 0
@@ -1836,7 +1836,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 243445175}
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5000001, w: 0.49999994}
-  m_LocalPosition: {x: 6.35, y: -0, z: 49.39}
+  m_LocalPosition: {x: 0, y: -0, z: 49.39}
   m_LocalScale: {x: 100, y: 100.000015, z: 100.000015}
   m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
   m_Children:
@@ -9044,7 +9044,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 438274, guid: 116d4a29c553b564b88021c72bae544a, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 438274, guid: 116d4a29c553b564b88021c72bae544a, type: 2}
       propertyPath: m_LocalRotation.x
@@ -9082,7 +9082,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 438274, guid: 116d4a29c553b564b88021c72bae544a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -125
+      value: -175
       objectReference: {fileID: 0}
     - target: {fileID: 438274, guid: 116d4a29c553b564b88021c72bae544a, type: 2}
       propertyPath: m_LocalPosition.y
@@ -9377,7 +9377,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 447032, guid: 5992dd5427bb4a94da8ef7f321ec8527, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -225
+      value: -275
       objectReference: {fileID: 0}
     - target: {fileID: 447032, guid: 5992dd5427bb4a94da8ef7f321ec8527, type: 2}
       propertyPath: m_LocalPosition.y
