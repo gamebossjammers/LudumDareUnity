@@ -71,6 +71,11 @@ public class WindowManager : MonoBehaviour
         return GetWindow(value);
     }
 
+    public BaseWindow Open (EWindows pWindow)
+    {
+        return Open((int)pWindow);
+    }
+
 
     /// <summary>
     /// Closes the active window(if any).

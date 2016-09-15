@@ -206,7 +206,7 @@ public class GameController : MonoBehaviour {
 				StartCoroutine(letTheBallRun( 3 , navHit) );
 
                 // Subtract 1 move from the pool
-                GameInstance.GetCurrentGameManager().SubtractMove(1);
+                GameInstance.GetCurrentGameManager().SubtractMoves(1);
 
 			}
 				

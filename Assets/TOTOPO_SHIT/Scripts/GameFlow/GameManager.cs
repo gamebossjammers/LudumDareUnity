@@ -42,17 +42,17 @@ public class GameManager : MonoBehaviour
     public void RegularTowerHit(int pNumberOfMovesToAdd)
     {
         if (OnRegularTowerDestroyed != null) OnRegularTowerDestroyed();
-        AddMove(pNumberOfMovesToAdd);
+        AddMoves(pNumberOfMovesToAdd);
     }
 
-    // Keep this method for cheating. On regular game flow, external scripts call RegularTowerHit, not this one.
-    public void AddMove (int pNumberOfMovesToAdd)
+    // Keep this method public for cheats. On regular game flow, external scripts call RegularTowerHit, not this one.
+    public void AddMoves (int pNumberOfMovesToAdd)
     {
         _movesLeft += pNumberOfMovesToAdd;
         //Debug.Log("Adding " + pNumberOfMovesToAdd + " moves. " + _movesLeft + " moves left.");
     }
 
-    public void SubtractMove(int pNumberOfMovesToSubtract)
+    public void SubtractMoves (int pNumberOfMovesToSubtract)
     {
         _movesLeft -= pNumberOfMovesToSubtract;
         if (_movesLeft <= 0)
@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(PlaySound(0)); // Ready!!
         //Debug.Log("Ready!");
-        GameInstance.GetCurrentWindowManager().Open(0);
+        GameInstance.GetCurrentWindowManager().Open(EWindows.Ready);
         while (!_bReady)
         {
             yield return new WaitForSeconds(_loopDelay);
@@ -110,13 +110,13 @@ public class GameManager : MonoBehaviour
     public void ShowInstructions ()
     {
         _gameState = EGameState.Instructions;
-        GameInstance.GetCurrentWindowManager().Open(1);
+        GameInstance.GetCurrentWindowManager().Open(EWindows.Instructions);
     }
 
     public void HideInstructions ()
     {
         _gameState = EGameState.Playing;
-        GameInstance.GetCurrentWindowManager().Open(2);
+        GameInstance.GetCurrentWindowManager().Open(EWindows.Playing);
     }
 
     public IEnumerator GameOver()
@@ -125,14 +125,14 @@ public class GameManager : MonoBehaviour
         if (_masterTowerDestroyed)
         {
             StartCoroutine(PlaySound(2)); // Congratulations!!
-            GameInstance.GetCurrentWindowManager().Open(3);
+            GameInstance.GetCurrentWindowManager().Open(EWindows.Win);
             _gameState = EGameState.Win;
             //Debug.Log("You Won!");
         }
         else
         {
             StartCoroutine(PlaySound(3)); // Game Over
-            GameInstance.GetCurrentWindowManager().Open(4);
+            GameInstance.GetCurrentWindowManager().Open(EWindows.Lose);
             _gameState = EGameState.Lose;
             //Debug.Log("You Died!");
         }
